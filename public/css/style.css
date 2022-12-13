@@ -1,0 +1,27 @@
+#navbar {
+	 background: blueviolet;
+	 color:white;
+}
+body{
+	padding: 0;
+	margin: 0;
+	
+}
+#navbarul{
+	display: flex;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    margin-top: 2px;
+    left: 0;
+    list-style: none;
+}
+.change-st{
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+}
+.change-st:hover{
+	color:white;
+}
+
