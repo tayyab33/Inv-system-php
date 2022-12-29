@@ -3,15 +3,19 @@
 
    if(request_post()){
  if(isset($_POST['UpdateId']) != ""){
+  $string = $_POST['updatename'];
+    if(!is_numeric($string)){
    	   $update = [];
-   	   $update['Id'] = $_POST['UpdateId'];
-   	   $update['Name'] = $_POST['updatename'];
+   	   $update['Id'] = strip_tags($_POST['UpdateId']);
+   	   $update['Name'] = strip_tags($_POST['updatename']);
    	   $result = update_data('category', $update);
    }
+}
 }
   
  
 ?>
+
 <div class="modal" id="myModal<?php echo $cetogry['Id'] ?>" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

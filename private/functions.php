@@ -277,31 +277,31 @@ function check_vendor_exist_for_purchase($namecheck){
   global $db;
   global $ALLUPDATE;
   if($table == 'category'){
-      
+      $table = strip_tags($table);
     $data = select_all('category');
        $fetch =  mysqli_fetch_assoc($data);
-       $sqli = "UPDATE invoices Set Category = '" . $update['Name'] . "' ";
+       $sqli = "UPDATE invoices Set Category = '" . strip_tags($update['Name']) . "' ";
        $sqli .= "WHERE Category ='". $fetch['Name'] . "' ";
        $mysql= mysqli_query($db, $sqli);
-       $sqli2 = "UPDATE product Set category = '" . $update['Name'] . "' ";
+       $sqli2 = "UPDATE product Set category = '" . strip_tags($update['Name']) . "' ";
        $sqli2 .= "WHERE category ='". $fetch['Name'] ."' ";
        $mysql2= mysqli_query($db, $sqli2);
 
     $sql = "UPDATE " . $table . " ";
-    $sql .= "set Name ='" . $update['Name'] . "' ";
+    $sql .= "set Name ='" . strip_tags($update['Name']) . "' ";
     $sql .= "WHERE Id ='" . $update['Id'] . "' ";
     $result = mysqli_query($db, $sql);
-    return header("Location: ../public/" . strip_tags($table) . ".php");
+    // return header("Location: ../public/" . strip_tags($table) . ".php");
 
     }else if($table == 'customer' || $table == 'vendor'){
-
+             $table = strip_tags($table);
         If($table == 'customer'){
        $data = select_all($table);
        $fetch =  mysqli_fetch_assoc($data);
-       $sqli = "UPDATE invoice_lists Set  Customer_Name = '" . $update['Name'] . "' ";
-       $sqli .= "WHERE Customer_Name='". $fetch['Customer_Name'] . "' ";
+       $sqli = "UPDATE invoice_lists Set  Customer_Name = '" . strip_tags($update['Name']) . "' ";
+       $sqli .= "WHERE Customer_Name ='". $fetch['Name'] . "' ";
        $mysql= mysqli_query($db, $sqli);
-       $sqli2 = "UPDATE customerbook Set Name = '" . $update['Name'] . "' ";
+       $sqli2 = "UPDATE customerbook Set Name = '" . strip_tags($update['Name']) . "' ";
        $sqli2 .= "WHERE Name ='". $fetch['Name'] ."' ";
        $mysql2= mysqli_query($db, $sqli2);
        }
@@ -324,18 +324,18 @@ function check_vendor_exist_for_purchase($namecheck){
 
 
     $result = mysqli_query($db, $sql);
-    return header("Location: ../public/" . strip_tags($table) . ".php");
+    // return header("Location: ../public/" . strip_tags($table) . ".php");
     }else if($table == 'product'){
 
       
        $data = select_all($table);
        $fetch =  mysqli_fetch_assoc($data);
-       $sqli = "UPDATE purchase_products Set Product_Name = '" . $update['Name'] . "', ";
+       $sqli = "UPDATE purchase_products Set Product_Name = '" . strip_tags($update['Name']) . "', ";
        $sqli .= " Purchase_Price='" . $update['updatePrice'] . "' ";
        $sqli .= "WHERE vendor='". $fetch['Product_Name'] . "' ";
        $mysql= mysqli_query($db, $sqli);
 
-       $sqli2 = "UPDATE invoices Set Product_Name = '" . $update['Name'] . "', ";
+       $sqli2 = "UPDATE invoices Set Product_Name = '" . strip_tags($update['Name']) . "', ";
        $sqli2 .= " Product_Sales_Price='" . $update['updatesales'] . "', ";
        $sqli2 .= "Total = Product_Sales_Price * Sales_Stock";
        $mysql2= mysqli_query($db, $sqli2);
@@ -442,6 +442,13 @@ function updata_data_purchase_stock($table, $data){
 }
 function updata_data_stock_invoice($table, $data){
   global $db;
+    $namecheckg = $data['Product_Name'];
+    $result0 = check_product_exist_to_update($namecheckg);
+    $fetchsi = mysqli_fetch_assoc($result0);
+    If($fetchsi['Prodcut_Stock'] < $data['Sales_Stock']){
+      echo "low stock";
+      exit;
+    }
     $result = check_product_exist_to_update($data['Product_Name']);
     $fetch = mysqli_fetch_assoc($result);
     $sql = "UPDATE product ";

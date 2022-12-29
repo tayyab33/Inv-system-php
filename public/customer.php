@@ -5,20 +5,21 @@ session_start();
 include_once('../private/file_roots.php');
 
  if(request_post()){
+  
    $result = "";
    // session for form submission check
 
    if(isset($_POST['name']) != ""){
    $namecheck =  $_POST['name'];
+ if(!is_numeric($namecheck) && is_numeric($_POST['contact'])){
   // check result if exist
 
   if(check_customer_exist($namecheck)){
-  	echo "nice to meet you";
-  	echo "hello";
+  
 	$customer  = [];
-	$customer['name'] = $_POST['name'];
-	$customer['contact'] = $_POST['contact'];
-	$re = insertdata('custome', $customer);
+	$customer['name'] = strip_tags($_POST['name']);
+	$customer['contact'] = strip_tags($_POST['contact']);
+	$re = insertdata('customer', $customer);
 
       echo "<div>" ?> 
       <script type="text/javascript">
@@ -36,7 +37,7 @@ echo "</div>";
       }
   }
 }
-
+}
 ?>
 <nav class="navbar nav bg-dark">
     <h3 class="m-auto m-2 text-danger"> Customer Page </h3>

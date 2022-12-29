@@ -1,5 +1,6 @@
 <?php 
 session_start();
+//session_destroy();
 $title = "Invoice"; include_once('layouts/header.php'); include_once('../private/file_roots.php'); include 'layouts/invoice_sripts_links.php';?>
 
 <style type="text/css">
@@ -35,6 +36,7 @@ $title = "Invoice"; include_once('layouts/header.php'); include_once('../private
      <div class="form-outline mb-2">
    <label class="form-label" for="name" style="font-weight: bold; color: white;">Select Product Name</label>
 <select name="product" id="product" class="form-control">
+	    <option id="Product_Name" name="Product_Name">Select product</option>
      <?php $result = select_data('product'); while ($data = mysqli_fetch_assoc($result)) {?>
 	 <option name="product" selected="seleted" id="product"><?php echo $data['Product_Name'] ?></option>
 	<?php } ?>
@@ -43,8 +45,8 @@ $title = "Invoice"; include_once('layouts/header.php'); include_once('../private
 	<div class="form-outline mb-2">
 		   <label class="form-label" for="name" style="font-weight: bold; color: white;">Select Customer Name</label>
 	<select name="Customer_Name" id="Customer_Name" class="form-control">
+		<option >walking customer</option>
      <?php $resultcustomer = select_data('customer'); while ($dataresult = mysqli_fetch_assoc($resultcustomer)) {?>
-     	<option >walking customer</option>
 	 <option name="Customer_Name" selected="seleted" id="Customer_Name"><?php echo $dataresult['Name'] ?></option>
 	<?php } ?>
 	</select>
@@ -75,7 +77,10 @@ $title = "Invoice"; include_once('layouts/header.php'); include_once('../private
 
 <button id="insert" class="btn btn-primary">Add</button>
 </div>
-
+ <nav class="nav navbar bg-dark m-3 text-white p-3">
+ 	<i>Refresh for new data</i>
+ 	<h3 class="m-auto">You can edit or change Invoice data from customerbook or Invoice list Page</h3>
+ </nav>
 <table class="table mt-3" id="recordListing">
 	<thead>
 	 <tr>
@@ -87,14 +92,20 @@ $title = "Invoice"; include_once('layouts/header.php'); include_once('../private
 	 </tr>
 	 </thead>
 	 <tbody>
-	 	<tr>
-	 		<td ></td>
-	 		<td id="empId"></td>
-	 		<td id="empName"></td>
-	 		<td></td>
-	 		<td></td>
-	 	</tr>
-	 </tbody>
+	         <?php 
+	         if(isset($_SESSION['sales'])){
+	          foreach($_SESSION['sales'] as $data){
+                    ?>
+	    	<tr>
+	              <td>1</td>
+	    	      <td ><?php echo $data['Product_Name']; ?></td>
+	    	      <td id="Product_Sales_Price"><?php echo $data['Product_Sales_Price']; ?></td>
+	    	      <td id="Sales_Stock"><?php echo $data['Sales_Stock']; ?></td>
+	    	      <td id="total"><?php echo $data['total'] ?></td>
+	          </tr>
+	          
+           <?php } } ?>
+ 	 </tbody>
 </table>
 
 <div id="errorMassage"></div>
@@ -167,6 +178,7 @@ $("#insert").click(function(e) {
 		})
 	})
 </script>
+
 <?php include_once('layouts/footer.php'); ?> 
 <script type="text/javascript">
     var addSerialNumber = function () {
@@ -177,3 +189,4 @@ $("#insert").click(function(e) {
 };
 addSerialNumber();
   </script>
+

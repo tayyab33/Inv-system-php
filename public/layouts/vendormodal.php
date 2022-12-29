@@ -1,14 +1,17 @@
 <?php
 
    if(request_post()){
+    if(isset($_POST['updatecontact']) != ""){
+      $namecheck =  $_POST['updatename'];
+     if(!is_numeric($namecheck) && is_numeric($_POST['updatecontact'])){
    	   $update = [];
-   	   $update['Id'] = $_POST['customerId'];
-   	   $update['Name'] = $_POST['updatename'];
-   	   $update['contact'] = $_POST['updatecontact'];
+   	   $update['Id'] = strip_tags($_POST['customerId']);
+   	   $update['Name'] = strip_tags($_POST['updatename']);
+   	   $update['contact'] = strip_tags($_POST['updatecontact']);
    	   $result = update_data('vendor', $update);
    }
-  
- 
+  }
+ }
 ?>
 <div class="modal" id="Vendor<?php echo $vendor['Id'] ?>" aria-hidden="true">
   <div class="modal-dialog">

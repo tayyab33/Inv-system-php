@@ -10,8 +10,6 @@ include_once('../private/file_roots.php');
    $namecheck =  $_POST['customer'];
   // check result if exist
   if(check_customer_exist_for_sales($namecheck)){
-  	echo "nice to meet you";
-  	echo "hello";
 	$customer  = [];
 	$customer['Name'] = $_POST['customer'];
 	$customer['Purchase_amount'] = $_POST['Purchase_amount'];

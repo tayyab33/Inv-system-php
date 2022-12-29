@@ -17,7 +17,7 @@ include_once('../private/file_roots.php');
       <td>Purchase amount</td>
       <td>Paid Amount</td>
       <td>Unpaid Amount</td>
-      <td>Payment to receive</td>
+      <td>Payment to Get</td>
       <td>Date</td>
     </tr>
     </thead>

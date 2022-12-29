@@ -1,11 +1,11 @@
 <?php
 
    if(request_post()){
-   	if($_POST['customersubmit']){
+   	if(isse($_POST['customersubmit'])){
    	   $update = [];
    	   $update['Id'] = $_POST['customerId'];
-   	   $update['Customer_Paid'] = $_POST['Customer_Paid'];
-   	   $update['Purchase_amount'] = $_POST['Purchase_amount'];
+   	   $update['Customer_Paid'] = strip_tags($_POST['Customer_Paid']);
+   	   $update['Purchase_amount'] = strip_tags($_POST['Purchase_amount']);
    	   $result = update_data('customerbook', $update);
    }
    }

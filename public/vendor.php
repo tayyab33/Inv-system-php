@@ -11,14 +11,13 @@ include_once('../private/file_roots.php');
 
    if(isset($_POST['name']) != ""){
    $namecheck =  $_POST['name'];
+   if(!is_numeric($namecheck) && is_numeric($_POST['contact'])){
   // check result if exist
-
+  
   if(check_vendor_exist($namecheck)){
-  	echo "nice to meet you";
-  	echo "hello";
-	$vendor  = [];
-	$vendor['name'] = $_POST['name'];
-	$vendor['contact'] = $_POST['contact'];
+  	$vendor  = [];
+	$vendor['name'] =  strip_tags($_POST['name']);
+	$vendor['contact'] = strip_tags($_POST['contact']);
 	$re = insertdata('vendor',$vendor);
 
       echo "<div>" ?> 
@@ -37,6 +36,7 @@ echo "</div>";
       }
   }
 }
+  }
 
 ?>
 <nav class="navbar nav bg-dark">

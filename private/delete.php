@@ -16,6 +16,10 @@ $tbo = $_GET['tablei'] ?? '';
         $toup =  ucfirst($find);
         $table = $toup . "_" . 'lists';
       }
+       if($table == 'purchase_products'){
+        header('Location: ../public/purchase_stock.php');
+        exit();
+      }
   	  header('Location: ../public/'. strip_tags($table) . '.php');
   }
 if((int)$Id > 0 && $table != ''){
@@ -41,6 +45,9 @@ if((int)$Id > 0 && $tbo != ''){
       $sql3 = "DELETE FROM customerbook ";
       $sql3 .= "WHERE Invoice_NO ='" . strip_tags($Id) . "' ";
       $result3 = mysqli_query($db, $sql2);
+       if($table == 'purchase_products'){
+        header('Location: ../public/purchase_stock.php');
+      }
       header('Location: ../public/'. 'Invoice_lists' . '.php');
   }
 function delete_all_purchase(){

@@ -2,16 +2,18 @@
 
    if(request_post()){
    	if(isset($_POST['productsubmit'])){
+    $namecheck =  $_POST['updatename'];
+  if(!is_numeric($namecheck) && is_numeric($_POST['updatePrice']) && is_numeric($_POST['updatesales'])){
    	   $update = [];
-   	   $update['Id'] = $_POST['productId'];
-   	   $update['Name'] = $_POST['updatename'];
-   	   $update['updatePrice'] = $_POST['updatePrice'];
-       $update['updatesales'] = $_POST['updatesales'];
-       $update['category'] = $_POST['category'];
+   	   $update['Id'] = strip_tags($_POST['productId']);
+   	   $update['Name'] = strip_tags($_POST['updatename']);
+   	   $update['updatePrice'] = strip_tags($_POST['updatePrice']);
+       $update['updatesales'] = strip_tags($_POST['updatesales']);
+       $update['category'] = strip_tags($_POST['category']);
    	   $result = update_data('product', $update);
    }
    }
- 
+ }
 ?>
 <div class="modal" id="product<?php echo $product['Id'] ?>" aria-hidden="true">
   <div class="modal-dialog">

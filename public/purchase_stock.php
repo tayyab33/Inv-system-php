@@ -56,6 +56,7 @@ echo "</div>";
       <div class="form-outline mb-2">
        <label class="form-label" for="name">Select Product</label>
      <select id="Product_Name" name="Product_Name" class="form-control">
+       <option id="Product_Name" name="Product_Name">Select product</option>
       <?php $result = select_data('product'); 
           while ($data = mysqli_fetch_assoc($result)) {
         ?>
@@ -114,7 +115,7 @@ echo "</div>";
        <td><?php echo $purchase['Purchase_Stock'] ?></td>
        <td><?php echo $purchase['vendor'] ?></td>
        <td><?php echo $purchase['Date'] ?></td>
-      <td><button class="btn btn-sm btn-danger text-w"><a class="change-st" href="../private/delete.php?id=<?php echo $purchase['Id'] ?>&tb="> Delete </a></button></td>
+      <td><button class="btn btn-sm btn-danger text-w"><a class="change-st" href="../private/delete.php?id=<?php echo $purchase['Id'] ?>&tb=purchase_products"> Delete </a></button></td>
     </tr>
   <?php } ?>
     </tbody>

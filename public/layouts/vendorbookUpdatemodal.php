@@ -29,11 +29,11 @@
    
    	<input type="hidden" name="vendorId" class="text-box" id="updateId" value="<?php echo $vendor['Id'] ?>">
        <div class="form-outline mb-2">
-    <label>Update Vendor Name</label>
+    <label>Update Purchase Amount</label>
 		<input type="text" name="Purchase_amount" class="form-control" id="updatename" value="<?php echo $vendor['Purchase_amount'] ?>">
      </div>
         <div class="form-outline mb-2">
-    <label>Update Vendor Name</label>
+    <label>Update Done Payment</label>
 		<input type="text" name="Payment_done" class="form-control" id="updatecontact" value="<?php echo $vendor['Payment_done'] ?>">
        </div>
        <input type="submit" name="customersubmit" class="btn btn-sm btn-primary">

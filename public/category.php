@@ -8,6 +8,8 @@ include_once('../private/file_roots.php');
    // session for form submission check
 
    if(isset($_POST['name']) != ""){
+    $string = $_POST['name'];
+     if(!is_numeric($string)){
    $namecheck =  $_POST['name'];
   // check result if exist
 
@@ -33,7 +35,7 @@ echo "</div>";
       }
   }
 }
-
+}
 ?>
 
 <nav class="navbar nav bg-dark">

@@ -21,6 +21,10 @@ include_once('file_roots.php');
      $nowcheckdubli = check_Customer_Inv_exit($_POST['invoce_no']);
      if($nowcheckdubli){
      $nowcheckdublio = check_Invoice_exist_avoid_dubli($_POST['invoce_no']);
+     if(!$nowcheckdublio){
+      echo "no data";
+      exit();
+     }
      $nowfetch = mysqli_fetch_assoc($nowcheckdublio);
      // while ($newdata = $nowfetch) {
      foreach($nowfetch as $key => $data){

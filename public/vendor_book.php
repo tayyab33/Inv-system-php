@@ -11,8 +11,7 @@ include_once('../private/file_roots.php');
 
   // check result if exist
   if(check_vendor_exist_for_purchase($namecheck)){
-  	echo "nice to meet you";
-  	echo "hello";
+  	
 	$vendor  = [];
 	$vendor['vendor'] = $_POST['vendor'];
 	$vendor['Purchase_amount'] = $_POST['Purchase_amount'];

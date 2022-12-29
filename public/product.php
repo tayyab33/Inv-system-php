@@ -11,13 +11,13 @@ include_once('../private/file_roots.php');
   // check result if exist
 
   if(check_product_exist($namecheck)){
-  	echo "nice to meet you";
-  	echo "hello";
+    $namecheck =  $_POST['Product_Name'];
+  if(!is_numeric($namecheck) && is_numeric($_POST['Product_Price']) && is_numeric($_POST['Product_Sales_Price']) && is_numeric($_POST['category']) ){
 	$product  = [];
-	$product['Product_Name'] = $_POST['Product_Name'];
-	$product['Product_Price'] = $_POST['Product_Price'];
-  $product['Product_Sales_Price'] = $_POST['Product_Sales_Price'];
-  $product['category'] = $_POST['category'];
+	$product['Product_Name'] = strip_tags($_POST['Product_Name']);
+	$product['Product_Price'] = strip_tags($_POST['Product_Price']);
+  $product['Product_Sales_Price'] = strip_tags($_POST['Product_Sales_Price']);
+  $product['category'] = strip_tags($_POST['category']);
 	$re = insertdata('product',$product);
 
       echo "<div>" ?> 
@@ -36,8 +36,9 @@ echo "</div>";
       }
   }
 }
-
+}
 ?>
+
 <nav class="navbar nav bg-dark mb-2">
     <h3 class="m-auto m-2 text-danger"> Product Page </h3>
 </nav>
@@ -47,7 +48,7 @@ echo "</div>";
    </h1>
    <div class="card col-md-4 m-auto mt-3 p-4 bg-danger">
   <div class="form-outline mb-2">
-    <label class="form-label" for="name">Customer Name</label>
+    <label class="form-label" for="name">Product Name</label>
     <input type="text" name="Product_Name" id="Product_Name" class="form-control" autocomplete="off">
   </div>
    <div class="form-outline mb-2">
